@@ -2,6 +2,7 @@
 #:package Sourcy.Git
 #:package Sourcy.DotNet
 #:package Rocket.Surgery.ModularPipelines.Extensions
+#:package Rocket.Surgery.MyAssembly
 #:include ./Samples.cs
 #:property ImportConventions=true
 #:property JsonSerializerIsReflectionEnabledByDefault=true
