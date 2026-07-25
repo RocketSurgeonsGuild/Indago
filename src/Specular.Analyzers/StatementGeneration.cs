@@ -93,9 +93,9 @@ internal static class StatementGeneration
     {
         var serviceTypeExpression = GetTypeOfExpression(compilation, serviceType, true);
         var implementationTypeExpression = GetTypeOfExpression(compilation, implementationType, serviceType, true);
-        return  serviceTypeExpression is null || implementationTypeExpression is null 
-            ?   null  
-            :  GenerateServiceType(
+        return serviceTypeExpression is null || implementationTypeExpression is null
+            ? null
+            : GenerateServiceType(
             compilation,
             serviceType,
             serviceTypeExpression,
@@ -208,8 +208,8 @@ internal static class StatementGeneration
     {
         if (FindTypeInAssembly.FindType(compilation, assembly) is not { } keyholdType) return null;
         var typeExpression = GetTypeOfExpression(compilation, keyholdType, false);
-        return  typeExpression is null 
-            ?   null  
+        return typeExpression is null
+            ? null
             : (ExpressionSyntax)MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, typeExpression, IdentifierName("Assembly"));
     }
 
@@ -223,8 +223,8 @@ internal static class StatementGeneration
         if (!compilation.IsSymbolAccessibleWithin(type, compilation.Assembly) && type.IsGenericType && !type.IsOpenGenericType())
         {
             var genericPrivateType = getPrivateType(compilation, type.ConstructUnboundGenericType(), allowPrivateTypeLookup);
-            return  genericPrivateType is null 
-                ?   null  
+            return genericPrivateType is null
+                ? null
                 : (ExpressionSyntax)PostfixUnaryExpression(
                 SyntaxKind.SuppressNullableWarningExpression,
                 InvocationExpression(

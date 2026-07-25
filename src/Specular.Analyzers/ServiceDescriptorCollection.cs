@@ -426,7 +426,7 @@ internal static class ServiceDescriptorCollection
                 }
             }
 
-            foreach (var asType in asSpecificTypes.OrderBy( Helpers.GetFullMetadataName ))
+            foreach (var asType in asSpecificTypes.OrderBy(Helpers.GetFullMetadataName))
             {
                 if (emittedTypes.Contains(asType)) continue;
 
@@ -461,7 +461,7 @@ internal static class ServiceDescriptorCollection
 
             if (emittedTypes.Count == 0 && ( lifetimeRegistrations.Any() || discoveredLifetime is { } ) && !asMatchingInterface)
             {
-                foreach (var @interface in type.AllInterfaces.OrderBy( Helpers.GetFullMetadataName ))
+                foreach (var @interface in type.AllInterfaces.OrderBy(Helpers.GetFullMetadataName))
                 {
                     if (emittedTypes.Contains(@interface)) continue;
 

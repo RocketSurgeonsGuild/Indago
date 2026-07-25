@@ -14,12 +14,9 @@ internal sealed class CompiledTypeFilter(ClassFilter classFilter, ImmutableList<
     public bool IsMatch(Compilation compilation, INamedTypeSymbol targetSymbol)
     {
         if (Aborted) return false;
-        if (ClassFilter == ClassFilter.PublicOnly && targetSymbol.DeclaredAccessibility != Accessibility.Public)
-        {
-            return false;
-        }
-
-        return  TypeFilterDescriptors.Count == 0  ?  true  :  TypeFilterDescriptors.All(GetFilterDescriptor);
+        return  ClassFilter == ClassFilter.PublicOnly && targetSymbol.DeclaredAccessibility != Accessibility.Public 
+            ?  false 
+            :  TypeFilterDescriptors.Count == 0  ||  TypeFilterDescriptors.All(GetFilterDescriptor);
         bool GetFilterDescriptor(ITypeFilterDescriptor filterDescriptor)
         {
             return filterDescriptor switch

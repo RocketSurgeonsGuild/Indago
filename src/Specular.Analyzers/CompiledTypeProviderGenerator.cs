@@ -313,7 +313,7 @@ public class SpecularProviderGenerator : IIncrementalGenerator
             {
                 indentLevel++;
 
-                return base.VisitExpressionElement( Indent(node) );
+                return base.VisitExpressionElement(Indent(node));
             }
             finally
             {
